@@ -53,6 +53,7 @@ export default function CreatePostScreen(): React.JSX.Element {
       Alert.alert('Error', 'Failed to pick image');
     }
   };
+  
 
   const handlePost = async (): Promise<void> => {
     const contentValidation = validatePostContent(content);

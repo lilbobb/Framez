@@ -1,14 +1,14 @@
 import React, { ReactNode } from 'react';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, useWindowDimensions, View } from 'react-native';
 
 interface ResponsiveContainerProps {
   children: ReactNode;
 }
 
 const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({ children }) => {
+  const { width } = useWindowDimensions(); // dynamically updates on resize
   const isWeb = Platform.OS === 'web';
-  const windowWidth = Dimensions.get('window').width;
-  const shouldCenter = isWeb && windowWidth > 768;
+  const shouldCenter = isWeb && width > 768;
 
   if (!shouldCenter) {
     return <>{children}</>;
@@ -16,7 +16,7 @@ const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({ children }) =
 
   return (
     <View style={styles.webContainer}>
-      <View style={styles.webContent}>
+      <View style={[styles.webContent, { maxWidth: 600 }]}>
         {children}
       </View>
     </View>
@@ -26,17 +26,15 @@ const ResponsiveContainer: React.FC<ResponsiveContainerProps> = ({ children }) =
 const styles = StyleSheet.create({
   webContainer: {
     flex: 1,
-    backgroundColor: '#000000',
     alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#000000',
   },
   webContent: {
-    width: '100%',
-    maxWidth: 600,
     flex: 1,
+    width: '100%',
+    paddingHorizontal: 24,
   },
-  ScrollView: {
-    overflow: 'hidden',
-  }
 });
 
 export default ResponsiveContainer;

@@ -11,22 +11,25 @@
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.framez.app"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#000000"
       },
       "package": "com.framez.app",
       "permissions": [
-        "CAMERA",
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE",
-        "READ_MEDIA_IMAGES"
+        "android.permission.CAMERA",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.RECORD_AUDIO"
       ]
     },
     "web": {
@@ -40,6 +43,11 @@
           "cameraPermission": "Allow Framez to access your camera to capture moments."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "41657732-445f-4ebd-9b85-9c10ae5a9777"
+      }
+    }
   }
 }

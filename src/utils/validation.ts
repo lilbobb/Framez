@@ -9,9 +9,10 @@ export const validatePassword = (
   valid: boolean;
   error?: string;
 } => {
-  if (password.length < 6) {
-    return { valid: false, error: 'Password must be at least 6 characters' };
-  }
+ if (!/(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/.test(password)) {
+  return { valid: false, error: 'Password must include a number, uppercase letter, and symbol' };
+}
+
   return { valid: true };
 };
 
