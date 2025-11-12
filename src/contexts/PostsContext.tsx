@@ -205,7 +205,6 @@ export const PostsProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   }, []);
 
-
   const uploadImage = async (uri: string, user: any): Promise<string> => {
     try {
       const fileExt = uri.split('.').pop()?.toLowerCase() || 'jpg';
@@ -222,25 +221,32 @@ export const PostsProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             upsert: false
           });
 
-        if (error) throw error;
+        if (error) {
+          console.error('Web upload error:', error);
+          throw error;
+        }
+        console.log('Web upload successful');
       } else {
-        try {
-          const filePath = `${user.id}/${fileName}`;
-          const { data: { session } } = await supabase.auth.getSession();
+        const { data: { session } } = await supabase.auth.getSession();
 
-          if (!session) {
-            throw new Error('No authentication session found');
-          }
+        if (!session) {
+          throw new Error('No authentication session found');
+        }
+
+        console.log('Session found, proceeding with mobile upload');
+
+        try {
+          console.log('Trying FormData upload...');
 
           const formData = new FormData();
           formData.append('file', {
             uri: uri,
-            type: `image/${fileExt}`,
             name: fileName,
+            type: `image/${fileExt}`,
           } as any);
 
-          const response = await fetch(
-            `https://ugqnmjleptxqfopyajqm.supabase.co/storage/v1/object/post-images/${filePath}`,
+          const uploadResponse = await fetch(
+            `https://ugqnmjleptxqfopyajqm.supabase.co/storage/v1/object/post-images/${fileName}`,
             {
               method: 'POST',
               headers: {
@@ -250,23 +256,42 @@ export const PostsProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             }
           );
 
-          if (!response.ok) {
-            throw new Error(`Upload failed: ${response.status}`);
+          if (!uploadResponse.ok) {
+            const errorText = await uploadResponse.text();
+            console.error('FormData upload failed:', uploadResponse.status, errorText);
+            throw new Error(`FormData upload failed: ${uploadResponse.status}`);
           }
-        } catch (mobileError) {
-          console.log('FormData upload failed, trying base64:', mobileError);
-          const base64 = await FileSystem.readAsStringAsync(uri, {
-            encoding: FileSystem.EncodingType.Base64,
-          });
 
-          const { error } = await supabase.storage
-            .from('post-images')
-            .upload(fileName, `data:image/${fileExt};base64,${base64}`, {
-              contentType: `image/${fileExt}`,
-              upsert: false
+          console.log('FormData upload successful');
+        } catch (formDataError) {
+          console.log('FormData failed, trying base64 fallback:', formDataError);
+
+          try {
+            console.log('Reading file as base64...');
+
+            const base64 = await FileSystem.readAsStringAsync(uri, {
+              encoding: 'base64' as any,
             });
 
-          if (error) throw error;
+            console.log('Base64 data length:', base64.length);
+
+            const { error: base64Error } = await supabase.storage
+              .from('post-images')
+              .upload(fileName, `data:image/${fileExt};base64,${base64}`, {
+                contentType: `image/${fileExt}`,
+                upsert: false
+              });
+
+            if (base64Error) {
+              console.error('Base64 upload error:', base64Error);
+              throw base64Error;
+            }
+
+            console.log('Base64 upload successful');
+          } catch (base64Error) {
+            console.error('All upload methods failed:', base64Error);
+            throw new Error('All image upload methods failed');
+          }
         }
       }
 
@@ -275,7 +300,9 @@ export const PostsProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         .getPublicUrl(fileName);
 
       return publicUrl;
+
     } catch (error) {
+      console.error('Image upload completely failed:', error);
       throw new Error(`Failed to upload image: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   };

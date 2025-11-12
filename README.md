@@ -68,50 +68,50 @@ npx expo start
    - Scan QR code with Expo Go app on physical device
 
 ##  Project Structure
-
-framez/\
-├── App.tsx                          # Root component\
-├── app.json                        # Expo configuration\
-├── package.json                    # Dependencies\
-├\
-│\
-└── src/\
-    ├── config/\
-    │   └── supabase.ts            # Supabase client setup\
-    |   └── constants.ts            # environment variables\
-    │\
-    ├── contexts/\
-    │   └── AuthContext.tsx         # Authentication context\
-    |   └── PostsContext.tsx         # Posts context\
-    │\
-    ├── navigation/\
-    │   ├── AppNavigator.tsx        # Main navigation\
-    │   ├── AuthNavigator.tsx       # Auth flow\
-    │   └── MainNavigator.tsx       # Tab navigation\
-    |   └── WebNavigator.tsx       # web navigation\
-    │\
-    ├── screens/\
-    │   ├── auth/\
-    │   │   ├── LoginScreen.tsx     # Login screen\
-    │   │   └── SignUpScreen.tsx    # Sign up screen\
-    │   │\
-    │   └── main/\
-    │       ├── FeedScreen.tsx      # Home feed\
-    │       ├── ProfileScreen.tsx    # User profile\
-    │       └── CreatePostScreen.tsx  # Create post\
-    │\
-    └── components/\
-    |   └── Post.js                # Post component\
-    |\
-    |\
-    └── types/\
-    │   └── AppNaindex.ts        # types\
+```
+framez/
+├── App.tsx                          # Root component
+├── app.json                        # Expo configuration
+├── package.json                    # Dependencies
+├
+│
+└── src/
+    ├── config/
+    │   └── supabase.ts            # Supabase client setup
+    |   └── constants.ts            # environment variables
+    │
+    ├── contexts/
+    │   └── AuthContext.tsx         # Authentication context
+    |   └── PostsContext.tsx         # Posts context
+    │
+    ├── navigation/
+    │   ├── AppNavigator.tsx        # Main navigation
+    │   ├── AuthNavigator.tsx       # Auth flow
+    │   └── MainNavigator.tsx       # Tab navigation
+    |   └── WebNavigator.tsx       # web navigation
+    │
+    ├── screens/
+    │   ├── auth/
+    │   │   ├── LoginScreen.tsx     # Login screen
+    │   │   └── SignUpScreen.tsx    # Sign up screen
+    │   │
+    │   └── main/
+    │       ├── FeedScreen.tsx      # Home feed
+    │       ├── ProfileScreen.tsx    # User profile
+    │       └── CreatePostScreen.tsx  # Create post
+    │
+    └── components/
+    |   └── Post.js                # Post component
+    |
+    |
+    └── types/
+    │   └── AppNaindex.ts        # types
     │   
-    └── utils/\
-    │   └── helpers.ts       # Tab navigation\
+    └── utils/
+    │   └── helpers.ts       # Tab navigation
     |   └── validation.ts       # Tab navigation
     
-
+```
 
 ## 🗄️ Database Setup
 
