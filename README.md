@@ -1,4 +1,4 @@
-# Framez - Social Media Mobile App
+## Framez - Social Media Mobile App
 
 A modern, Threads-inspired social media application built with React Native and Expo. Share moments, connect with others, and engage with posts in a beautiful dark-themed interface.
 
@@ -6,17 +6,17 @@ A modern, Threads-inspired social media application built with React Native and 
 ![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-## 📱 Features
+##  Features
 
-- ✨ **User Authentication** - Secure sign up, login, and persistent sessions
-- 📸 **Create Posts** - Share text and images with your followers
-- 💬 **Feed** - View posts from all users in real-time
-- ❤️ **Like Posts** - Engage with content you love
-- 👤 **User Profile** - View your posts and account information
-- 🔄 **Real-time Updates** - See new posts instantly
-- 📱 **Native Experience** - Smooth animations and native components
+-  **User Authentication** - Secure sign up, login, and persistent sessions
+-  **Create Posts** - Share text and images with your followers
+-  **Feed** - View posts from all users in real-time
+-  **Like Posts** - Engage with content you love
+-  **User Profile** - View your posts and account information
+-  **Real-time Updates** - See new posts instantly
+-  **Native Experience** - Smooth animations and native components
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -29,15 +29,15 @@ A modern, Threads-inspired social media application built with React Native and 
 ### Installation
 
 1. **Clone the repository**
-```bash
+
 git clone https://github.com/lilbobb/framez.git
 cd framez
-```
+
 
 2. **Install dependencies**
-```bash
+
 npm install
-```
+
 
 3. **Set up Supabase**
    - Create a new project at [supabase.com](https://supabase.com)
@@ -45,77 +45,73 @@ npm install
    - Run the SQL schema (see Database Setup below)
 
 4. **Configure environment**
-```bash
+
 cp contants.ts
 
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_ANON_KEY=your-anon-key-here
-```
 
 5. **Update Supabase config**
 
-Edit `src/config/supabase.js` and replace the placeholder values:
-```javascript
+Edit `src/config/supabase.ts` and replace the placeholder values:
+
 const SUPABASE_URL = 'https://your-project.supabase.co';
 const SUPABASE_ANON_KEY = 'your-anon-key';
-```
 
 6. **Start the development server**
-```bash
+
 npx expo start
-```
 
 7. **Run on device/simulator**
    - Press `i` for iOS simulator
    - Press `a` for Android emulator
    - Scan QR code with Expo Go app on physical device
 
-## 📁 Project Structure
+##  Project Structure
 
-```
-framez/
-├── App.tsx                          # Root component
-├── app.json                        # Expo configuration
-├── package.json                    # Dependencies
-├
-│
-└── src/
-    ├── config/
-    │   └── supabase.ts            # Supabase client setup
-    |   └── constants.ts            # environment variables
-    │
-    ├── contexts/
-    │   └── AuthContext.tsx         # Authentication context
-    |   └── PostsContext.tsx         # Posts context
-    │
-    ├── navigation/
-    │   ├── AppNavigator.tsx        # Main navigation
-    │   ├── AuthNavigator.tsx       # Auth flow
-    │   └── MainNavigator.tsx       # Tab navigation
-    |   └── WebNavigator.tsx       # web navigation
-    │
-    ├── screens/
-    │   ├── auth/
-    │   │   ├── LoginScreen.tsx     # Login screen
-    │   │   └── SignUpScreen.tsx    # Sign up screen
-    │   │
-    │   └── main/
-    │       ├── FeedScreen.tsx      # Home feed
-    │       ├── ProfileScreen.tsx    # User profile
-    │       └── CreatePostScreen.tsx  # Create post
-    │
-    └── components/
-    |   └── Post.js                # Post component
-    |
-    |
-    └── types/
-    │   └── AppNaindex.ts        # types
+framez/\
+├── App.tsx                          # Root component\
+├── app.json                        # Expo configuration\
+├── package.json                    # Dependencies\
+├\
+│\
+└── src/\
+    ├── config/\
+    │   └── supabase.ts            # Supabase client setup\
+    |   └── constants.ts            # environment variables\
+    │\
+    ├── contexts/\
+    │   └── AuthContext.tsx         # Authentication context\
+    |   └── PostsContext.tsx         # Posts context\
+    │\
+    ├── navigation/\
+    │   ├── AppNavigator.tsx        # Main navigation\
+    │   ├── AuthNavigator.tsx       # Auth flow\
+    │   └── MainNavigator.tsx       # Tab navigation\
+    |   └── WebNavigator.tsx       # web navigation\
+    │\
+    ├── screens/\
+    │   ├── auth/\
+    │   │   ├── LoginScreen.tsx     # Login screen\
+    │   │   └── SignUpScreen.tsx    # Sign up screen\
+    │   │\
+    │   └── main/\
+    │       ├── FeedScreen.tsx      # Home feed\
+    │       ├── ProfileScreen.tsx    # User profile\
+    │       └── CreatePostScreen.tsx  # Create post\
+    │\
+    └── components/\
+    |   └── Post.js                # Post component\
+    |\
+    |\
+    └── types/\
+    │   └── AppNaindex.ts        # types\
     │   
-    └── utils/
-    │   └── helpers.ts       # Tab navigation
+    └── utils/\
+    │   └── helpers.ts       # Tab navigation\
     |   └── validation.ts       # Tab navigation
-    |   
-```
+    
+
 
 ## 🗄️ Database Setup
 
@@ -123,7 +119,6 @@ framez/
 
 Go to your Supabase project → SQL Editor → New Query, and run the following:
 
-```sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE profiles (
@@ -200,7 +195,6 @@ CREATE INDEX posts_user_id_idx ON posts(user_id);
 CREATE INDEX posts_created_at_idx ON posts(created_at DESC);
 CREATE INDEX likes_post_id_idx ON likes(post_id);
 CREATE INDEX likes_user_id_idx ON likes(user_id);
-```
 
 ### 2. Set up Storage Bucket
 
@@ -209,7 +203,6 @@ CREATE INDEX likes_user_id_idx ON likes(user_id);
 3. Make it **public**
 4. Go to **Policies** tab and add these policies:
 
-```sql
 CREATE POLICY "Anyone can view post images"
   ON storage.objects FOR SELECT
   USING (bucket_id = 'post-images');
@@ -234,7 +227,6 @@ CREATE POLICY "Users can delete own images"
     bucket_id = 'post-images' 
     AND auth.uid() = owner
   );
-```
 
 ## 🔐 Authentication Setup
 
@@ -251,10 +243,9 @@ By default, Supabase requires email confirmation. To disable for development:
 1. Go to **Authentication** → **Settings**
 2. Disable "Enable email confirmations"
 
-## 📦 Dependencies
+##  Dependencies
 
 ### Core Dependencies
-```json
 {
   "@react-navigation/native": "^6.1.9",
   "@react-navigation/bottom-tabs": "^6.5.11",
@@ -266,9 +257,8 @@ By default, Supabase requires email confirmation. To disable for development:
   "react-native-url-polyfill": "^2.0.0",
   "date-fns": "^3.0.0"
 }
-```
 
-## 🎨 UI/UX Features
+##  UI/UX Features
 
 - **Dark Theme** - Modern black theme inspired by Threads
 - **Smooth Animations** - Native transitions and interactions
@@ -278,47 +268,41 @@ By default, Supabase requires email confirmation. To disable for development:
 - **Keyboard Aware** - Smart keyboard handling
 - **Loading States** - Clear loading indicators
 
-## 🧪 Testing
+## Testing
 
 ### Run on iOS Simulator (Mac only)
-```bash
 npx expo start --ios
-```
 
 ### Run on Android Emulator
-```bash
+
 npx expo start --android
-```
 
 ### Run on Physical Device
 1. Install **Expo Go** from App Store/Play Store
 2. Run `npx expo start`
 3. Scan QR code with Expo Go (Android) or Camera (iOS)
 
-## 🏗️ Building for Production
+## Building for Production
 
 ### iOS Build
-```bash
 npm install -g eas-cli
 
 eas build:configure
 
 eas build --platform ios
-```
+
 
 ### Android Build
-```bash
+
 eas build --platform android --profile preview
 
 eas build --platform android --profile production
-```
 
-## 🌐 Deployment to Appetize.io
+
+##  Deployment to Appetize.io
 
 1. **Build the app**
-```bash
 eas build --platform android --profile preview
-```
 
 2. **Download the APK** from EAS build dashboard
 
@@ -333,18 +317,17 @@ eas build --platform android --profile preview
    - Copy the public link
    - Share with testers or add to README
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Metro bundler cache issues
-```bash
+
 npx expo start -c
-```
+
 
 ### Dependency conflicts
-```bash
+
 rm -rf node_modules package-lock.json
 npm install
-```
 
 ### Supabase connection issues
 - Verify your URL and anon key are correct
@@ -361,11 +344,10 @@ npm install
 - Verify Supabase auth configuration
 - Clear app data and try again
 
-## 📚 API Documentation
+## API Documentation
 
 ### Authentication
 
-```javascript
 const { data, error } = await signUp(email, password, name);
 
 const { data, error } = await signIn(email, password);
@@ -373,11 +355,9 @@ const { data, error } = await signIn(email, password);
 await signOut();
 
 const { user } = useAuth();
-```
 
 ### Posts
 
-```javascript
 await supabase.from('posts').insert({
   user_id: user.id,
   content: 'Hello World',
@@ -393,11 +373,9 @@ await supabase
   .from('posts')
   .delete()
   .eq('id', postId);
-```
 
 ### Likes
 
-```javascript
 await supabase
   .from('likes')
   .insert({ post_id, user_id });
@@ -407,9 +385,8 @@ await supabase
   .delete()
   .eq('post_id', postId)
   .eq('user_id', userId);
-```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -419,32 +396,32 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👨‍💻 Author
+## Author
 
-Your Name
 - GitHub: [@lilbobb](https://github.com/lilbobb)
 - Email: ukurowo@gmail.com
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - [Expo](https://expo.dev/) - For the amazing development platform
 - [Supabase](https://supabase.com/) - For the backend infrastructure
 - [React Navigation](https://reactnavigation.org/) - For navigation
 - [Threads](https://threads.net) - For UI/UX inspiration
 
-## 📝 Demo Video
+## Demo Video
 
 [Watch Demo Video](https://your-demo-video-link.com)
 
-## 🔗 Links
+## Links
 
 - **Live Demo**: [Appetize.io Link](https://appetize.io/app/your-app-id)
 - **GitHub**: [Repository](https://github.com/lilbobb/framez)
 
 ---
-#   F r a m e z  
+#   F r a m e z 
+ 
  
